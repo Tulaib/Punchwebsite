@@ -1,3 +1,4 @@
+"use client";
 import { useSnackbar, VariantType } from "notistack";
 import React from "react";
 

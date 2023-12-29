@@ -5,6 +5,7 @@ import ThemeRegistry from "@/styles/theme";
 import Providers from "@/store/Providers";
 import { SnackbarProvider } from "notistack";
 import { SnackbarUtilsConfigurator } from "@/content/snackbar";
+import SnackbarProviders from "@/content/snackbarProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,19 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <SnackbarProvider
-          maxSnack={6}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          // action={(key) => <SnackbarCloseButton key={key} />}
-        >
-          <SnackbarUtilsConfigurator />
+        <SnackbarProviders>
           <ThemeRegistry>
             <body className={inter.className}>{children}</body>
           </ThemeRegistry>
-        </SnackbarProvider>
+        </SnackbarProviders>
       </Providers>
     </html>
   );

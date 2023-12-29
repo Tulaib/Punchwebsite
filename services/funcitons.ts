@@ -1,3 +1,4 @@
+"use client";
 import  SnackbarUtils  from '@/content/snackbar';
 import { Router } from 'next/router';
 
