@@ -1,0 +1,46 @@
+import { useSnackbar, VariantType } from "notistack";
+import React from "react";
+
+interface IProps {
+  setUseSnackbarRef: (showSnackbar: any) => void;
+}
+
+const InnerSnackbarUtilsConfigurator: React.FC<IProps> = (props: IProps) => {
+  props.setUseSnackbarRef(useSnackbar());
+  return null;
+};
+
+let useSnackbarRef: any;
+const setUseSnackbarRef = (useSnackbarRefProp: any) => {
+  useSnackbarRef = useSnackbarRefProp;
+};
+
+export const SnackbarUtilsConfigurator = () => {
+  return (
+    <InnerSnackbarUtilsConfigurator setUseSnackbarRef={setUseSnackbarRef} />
+  );
+};
+
+const data = {
+  success(msg: string, persist: boolean) {
+    this.toast(msg, "success", persist);
+  },
+  warning(msg: string, persist: boolean) {
+    this.toast(msg, "warning", persist);
+  },
+  info(msg: string, persist: boolean) {
+    this.toast(msg, "info", persist);
+  },
+  error(msg: string, persist: boolean) {
+    this.toast(msg, "error", persist);
+  },
+  toast(msg: string, variant: VariantType = "default", persist: boolean) {
+    useSnackbarRef.enqueueSnackbar(msg, {
+      variant,
+      persist,
+      preventDuplicate: true,
+    });
+  },
+};
+
+export default data;
